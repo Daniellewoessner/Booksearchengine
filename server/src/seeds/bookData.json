@@ -1,0 +1,48 @@
+[
+    {
+        "bookName": "The Great Gatsby"
+    },
+    {
+        "bookName": "To Kill a Mockingbird"
+    },
+
+    {
+        "bookName": "1984"
+    },
+    {
+        "bookName": "Pride and Prejudice"
+    },
+    {
+        "bookName": "The Catcher in the Rye"
+    },
+    {
+        "bookName": "The Hobbit"
+    },
+    {
+        "bookName": "Fahrenheit 451"
+    },
+    {
+        "bookName": "The Lord of the Rings"
+    },
+    {
+        "bookName": "Animal Farm"
+    },
+    {
+        "bookName": "Brave New World"
+    },
+    {
+        "bookName": "The Diary of a wimpy kid"
+    }, 
+    {
+        "bookName": "The Hunger Games"
+    },
+    {
+        "bookName": "The Fault in Our Stars"
+    },
+    {
+        "bookName": "The Chronicles of Narnia"
+    },
+    {
+        "bookName": "The Hitchhiker's Guide to the Galaxy"
+    }
+]
