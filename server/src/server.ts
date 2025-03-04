@@ -1,9 +1,14 @@
 import express from 'express';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import mongoose from 'mongoose';
 import { ApolloServer } from '@apollo/server';
 import { expressMiddleware } from '@apollo/server/express4';
 import { typeDefs, resolvers } from './schemas/index.js';
+
+// Fix for __dirname in ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Create a new instance of an Apollo server with the GraphQL schema
 const startApolloServer = async () => {
@@ -39,19 +44,19 @@ const startApolloServer = async () => {
       context: async ({ req }) => ({ token: req.headers.token }),
     }) as unknown as express.RequestHandler);
 
-    // Serve static assets in production
-    if (process.env.NODE_ENV === 'production') {
-      app.use(express.static(path.join(__dirname, '../../client/dist')));
-      
-      app.get('*', (_req, res) => {
-        res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
-      });
-    }
+    // Serve static assets in both production and development
+    app.use(express.static(path.join(__dirname, '../../client/dist')));
+    
+    // Handle React routing, return the index.html for all page requests
+    app.get('*', (_req, res) => {
+      res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
+    });
 
     // Start Express server
     app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}!`);
-      console.log(`Use GraphQL at http://localhost:${PORT}/graphql`);
+      console.log(`🌍 API server running on port ${PORT}!`);
+      console.log(`📊 Use GraphQL at http://localhost:${PORT}/graphql`);
+      console.log(`🖥️ React app available at http://localhost:${PORT}`);
     });
   } catch (error) {
     console.error('Failed to start server:', error);

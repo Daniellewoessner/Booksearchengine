@@ -1,82 +1,14 @@
 [
     {
-        "bookId": 1,
-        "userId": 1
+      "username": "testuser1",
+      "email": "testuser1@example.com",
+      "password": "password123",
+      "savedBooks": []
     },
     {
-        "bookId": 2,
-        "userId": 1
-    },
-    {
-        "bookId": 3,
-        "userId": 1
-    },
-    {
-        "bookId": 4,
-        "userId": 1
-    },
-    {
-        "bookId": 5,
-        "userId": 1
-    },
-    {
-        "bookId": 6,
-        "userId": 1
-    },
-    {
-        "bookId": 7,
-        "userId": 1
-    },
-    {
-        "bookId": 8,
-        "userId": 1
-    },
-    {
-        "bookId": 9,
-        "userId": 1
-    },
-    {
-        "bookId": 10,
-        "userId": 1
-    },
-    {
-        "bookId": 11,
-        "userId": 1
-    },
-    {
-        "bookId": 12,
-        "userId": 1
-    },
-    {
-        "bookId": 13,
-        "userId": 1
-    },
-    {
-        "bookId": 14,
-        "userId": 1
-    },
-    {
-        "bookId": 15,
-        "userId": 1
-    },
-    {
-        "bookId": 16,
-        "userId": 1
-    },
-    {
-        "bookId": 17,
-        "userId": 1
-    },
-    {
-        "bookId": 18,
-        "userId": 1
-    },
-    {
-        "bookId": 19,
-        "userId": 1
-    },
-    {
-        "bookId": 20,
-        "userId": 1
+      "username": "testuser2",
+      "email": "testuser2@example.com",
+      "password": "password123",
+      "savedBooks": []
     }
-]
+  ]

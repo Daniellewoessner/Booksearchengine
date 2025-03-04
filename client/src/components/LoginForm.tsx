@@ -20,6 +20,21 @@ const LoginForm = ({}: { handleModalClose: () => void }) => {
 
   const handleFormSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    console.log(userFormData);
+    try {
+      const { data } = await login ({
+        variables: {
+          ...userFormData,
+          '': undefined
+        },
+      });
+      Auth.login(data.login.token);
+    } catch (err) {
+      console.error(err);
+      setShowAlert(true);
+
+
+    }
 
     // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
@@ -93,3 +108,7 @@ const LoginForm = ({}: { handleModalClose: () => void }) => {
 };
 
 export default LoginForm;
+function login(_arg0: { variables: { "": any; }; }): { data: any; } | PromiseLike<{ data: any; }> {
+  throw new Error('Function not implemented.');
+}
+

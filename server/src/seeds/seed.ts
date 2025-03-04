@@ -2,13 +2,13 @@ import db from "../config/connection.js";
 import cleanDB from "./cleanDB.js";
 import User from "../models/User.js";
 
-import bookData from './bookData.json' assert {type: "json"};
-import userData from './userData.json' assert {type: "json"};
+import bookData from './bookData.json' with {type: "json"};
+import userData from './userData.json' with {type: "json"};
 
 db.once('open', async () => {
   try {
     // Clean the User collection
-    await cleanDB('User', 'users');
+    await cleanDB('User');
 
     // Insert initial user data
     console.log('Seeding users...');

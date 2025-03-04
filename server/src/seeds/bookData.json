@@ -1,48 +1,162 @@
 [
     {
-        "bookName": "The Great Gatsby"
+      "authors": ["F. Scott Fitzgerald"],
+      "description": "A novel about the mysteriously wealthy Jay Gatsby and his love for the beautiful Daisy Buchanan, set in the Roaring Twenties.",
+      "bookId": "book-id-1",
+      "image": "https://example.com/great-gatsby.jpg",
+      "link": "https://example.com/great-gatsby",
+      "title": "The Great Gatsby"
     },
     {
-        "bookName": "To Kill a Mockingbird"
-    },
-
-    {
-        "bookName": "1984"
-    },
-    {
-        "bookName": "Pride and Prejudice"
+      "authors": ["Harper Lee"],
+      "description": "A story about racial inequality and moral growth in the American South during the 1930s, told through the eyes of a young girl named Scout Finch.",
+      "bookId": "book-id-2",
+      "image": "https://example.com/mockingbird.jpg",
+      "link": "https://example.com/mockingbird",
+      "title": "To Kill a Mockingbird"
     },
     {
-        "bookName": "The Catcher in the Rye"
+      "authors": ["George Orwell"],
+      "description": "A dystopian novel that explores the dangers of totalitarianism, mass surveillance, and repressive regimentation of people and behaviors.",
+      "bookId": "book-id-3",
+      "image": "https://example.com/1984.jpg",
+      "link": "https://example.com/1984",
+      "title": "1984"
     },
     {
-        "bookName": "The Hobbit"
+      "authors": ["Jane Austen"],
+      "description": "A romantic novel of manners that follows the character development of Elizabeth Bennet, who learns about the repercussions of hasty judgments.",
+      "bookId": "book-id-4",
+      "image": "https://example.com/pride-prejudice.jpg",
+      "link": "https://example.com/pride-prejudice",
+      "title": "Pride and Prejudice"
     },
     {
-        "bookName": "Fahrenheit 451"
+      "authors": ["J.D. Salinger"],
+      "description": "The story of a teenager named Holden Caulfield who is struggling with adolescence and loss as he navigates his way through New York City.",
+      "bookId": "book-id-5",
+      "image": "https://example.com/catcher.jpg",
+      "link": "https://example.com/catcher",
+      "title": "The Catcher in the Rye"
     },
     {
-        "bookName": "The Lord of the Rings"
+      "authors": ["J.R.R. Tolkien"],
+      "description": "A fantasy novel about the journey of Bilbo Baggins, who is swept into an epic quest to reclaim the lost Dwarf Kingdom of Erebor from the fearsome dragon Smaug.",
+      "bookId": "book-id-6",
+      "image": "https://example.com/hobbit.jpg",
+      "link": "https://example.com/hobbit",
+      "title": "The Hobbit"
     },
     {
-        "bookName": "Animal Farm"
+      "authors": ["Ray Bradbury"],
+      "description": "A dystopian novel set in a future American society where books are outlawed and 'firemen' burn any that are found.",
+      "bookId": "book-id-7",
+      "image": "https://example.com/fahrenheit.jpg",
+      "link": "https://example.com/fahrenheit",
+      "title": "Fahrenheit 451"
     },
     {
-        "bookName": "Brave New World"
+      "authors": ["J.R.R. Tolkien"],
+      "description": "An epic high-fantasy novel that follows the quest to destroy the One Ring, which was created by the Dark Lord Sauron.",
+      "bookId": "book-id-8",
+      "image": "https://example.com/lotr.jpg",
+      "link": "https://example.com/lotr",
+      "title": "The Lord of the Rings"
     },
     {
-        "bookName": "The Diary of a wimpy kid"
-    }, 
-    {
-        "bookName": "The Hunger Games"
+      "authors": ["George Orwell"],
+      "description": "An allegorical novella that reflects events leading up to the Russian Revolution of 1917 and the Stalinist era of the Soviet Union.",
+      "bookId": "book-id-9",
+      "image": "https://example.com/animal-farm.jpg",
+      "link": "https://example.com/animal-farm",
+      "title": "Animal Farm"
     },
     {
-        "bookName": "The Fault in Our Stars"
+      "authors": ["Aldous Huxley"],
+      "description": "A dystopian novel set in a futuristic World State, inhabited by genetically modified citizens and an intelligence-based social hierarchy.",
+      "bookId": "book-id-10",
+      "image": "https://example.com/brave-new-world.jpg",
+      "link": "https://example.com/brave-new-world",
+      "title": "Brave New World"
     },
     {
-        "bookName": "The Chronicles of Narnia"
+      "authors": ["Jeff Kinney"],
+      "description": "A series of fiction books written as the journals of the main character, Greg Heffley, detailing his middle school experiences.",
+      "bookId": "book-id-11",
+      "image": "https://example.com/diary-wimpy-kid.jpg",
+      "link": "https://example.com/diary-wimpy-kid",
+      "title": "The Diary of a Wimpy Kid"
     },
     {
-        "bookName": "The Hitchhiker's Guide to the Galaxy"
+      "authors": ["Suzanne Collins"],
+      "description": "A dystopian novel set in a post-apocalyptic society where young people are selected to compete in a televised death match.",
+      "bookId": "book-id-12",
+      "image": "https://example.com/hunger-games.jpg",
+      "link": "https://example.com/hunger-games",
+      "title": "The Hunger Games"
+    },
+    {
+      "authors": ["John Green"],
+      "description": "A novel about a sixteen-year-old cancer patient who meets and falls in love with another cancer patient at a support group.",
+      "bookId": "book-id-13",
+      "image": "https://example.com/fault-in-stars.jpg",
+      "link": "https://example.com/fault-in-stars",
+      "title": "The Fault in Our Stars"
+    },
+    {
+      "authors": ["C.S. Lewis"],
+      "description": "A series of high fantasy novels set in the fictional realm of Narnia, a fantasy world of magic, mythical beasts, and talking animals.",
+      "bookId": "book-id-14",
+      "image": "https://example.com/narnia.jpg",
+      "link": "https://example.com/narnia",
+      "title": "The Chronicles of Narnia"
+    },
+    {
+      "authors": ["Douglas Adams"],
+      "description": "A comedic science fiction series beginning with the adventures of Arthur Dent, a hapless Englishman, following the demolition of Earth by the Vogons.",
+      "bookId": "book-id-15",
+      "image": "https://example.com/hitchhiker.jpg",
+      "link": "https://example.com/hitchhiker",
+      "title": "The Hitchhiker's Guide to the Galaxy"
+    },
+    {
+      "authors": ["J.K. Rowling"],
+      "description": "The first novel in the Harry Potter series, featuring a young wizard who discovers his magical heritage on his eleventh birthday.",
+      "bookId": "book-id-16",
+      "image": "https://example.com/harry-potter.jpg",
+      "link": "https://example.com/harry-potter",
+      "title": "Harry Potter and the Philosopher's Stone"
+    },
+    {
+      "authors": ["Margaret Atwood"],
+      "description": "A dystopian novel set in a near-future New England, in a totalitarian state resembling a theonomy that has overthrown the United States government.",
+      "bookId": "book-id-17",
+      "image": "https://example.com/handmaids-tale.jpg",
+      "link": "https://example.com/handmaids-tale",
+      "title": "The Handmaid's Tale"
+    },
+    {
+      "authors": ["Ernest Hemingway"],
+      "description": "A novel about an aging Cuban fisherman and his supreme ordeal: a relentless, agonizing battle with a giant marlin far out in the Gulf Stream.",
+      "bookId": "book-id-18",
+      "image": "https://example.com/old-man-sea.jpg",
+      "link": "https://example.com/old-man-sea",
+      "title": "The Old Man and the Sea"
+    },
+    {
+      "authors": ["Khaled Hosseini"],
+      "description": "A novel about the friendship between two boys growing up in Kabul, Afghanistan and how their lives are affected by the tumultuous events of their country.",
+      "bookId": "book-id-19",
+      "image": "https://example.com/kite-runner.jpg",
+      "link": "https://example.com/kite-runner",
+      "title": "The Kite Runner"
+    },
+    {
+      "authors": ["Khaled Hosseini"],
+      "description": "A novel about the friendship between two boys growing up in Kabul, Afghanistan and how their lives are affected by the tumultuous events of their country.",
+      "bookId": "book-id-19",
+      "image": "https://example.com/kite-runner.jpg",
+      "link": "https://example.com/kite-runner",
+      "title": "The Kite Runner"
     }
 ]
