@@ -1,10 +1,12 @@
-// server/routes/api/users.js (or similar file)
-const router = require('express').Router();
-const { User } = require('../../models');
-const { signToken } = require('../../utils/auth');
+// server/routes/api/user-routes.ts
+import express from 'express';
+import User from '../../models/User.js'; // Import directly from the User model file
+import { signToken } from '../../services/auth.js';
+
+const router = express.Router();
 
 // create a user, sign a token, and send it back
-router.post('/', async (req: { body: any; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { message: string; }): any; new(): any; }; }; json: (arg0: { token: any; user: any; }) => any; }) => {
+router.post('/', async (req: { body: any }, res: any) => {
   try {
     const userData = await User.create(req.body);
 
@@ -13,7 +15,7 @@ router.post('/', async (req: { body: any; }, res: { status: (arg0: number) => { 
     }
 
     // Create a token
-    const token = signToken(userData);
+    const token = signToken(userData.username as string, userData._id as string, userData.email as string);
 
     // Return the token and user data
     return res.json({
@@ -39,7 +41,7 @@ router.post('/', async (req: { body: any; }, res: { status: (arg0: number) => { 
 });
 
 // login a user, sign a token, and send it back
-router.post('/login', async (req: { body: { email: any; password: any; }; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { message: string; }): void; new(): any; }; }; json: (arg0: { token: any; user: any; }) => void; }) => {
+router.post('/login', async (req: { body: { email: any; password: any } }, res: any) => {
   try {
     const userData = await User.findOne({ email: req.body.email });
     if (!userData) {
@@ -52,7 +54,7 @@ router.post('/login', async (req: { body: { email: any; password: any; }; }, res
       return res.status(400).json({ message: 'Wrong password!' });
     }
 
-    const token = signToken(userData);
+    const token = signToken(userData.username as string, userData._id as string, userData.email as string);
     res.json({
       token,
       user: userData
@@ -63,4 +65,5 @@ router.post('/login', async (req: { body: { email: any; password: any; }; }, res
   }
 });
 
-module.exports = router;
+// Export using ES Module syntax
+export default router;
