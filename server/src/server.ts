@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { Request } from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import mongoose from 'mongoose';
@@ -10,10 +10,16 @@ import { typeDefs, resolvers } from './schemas/index.js';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+// Define context type
+interface ContextType {
+  token?: string | undefined;
+}
+
 // Create a new instance of an Apollo server with the GraphQL schema
-const startApolloServer = async () => {
+const startApolloServer = async (): Promise<void> => {
   try {
-    const server = new ApolloServer({
+    // Initialize Apollo Server first
+    const server = new ApolloServer<ContextType>({
       typeDefs,
       resolvers,
     });
@@ -27,32 +33,58 @@ const startApolloServer = async () => {
     app.use(express.urlencoded({ extended: false }));
     app.use(express.json());
 
-    // Add GraphQL middleware
+    // Add GraphQL middleware with proper TypeScript support
     app.use('/graphql', expressMiddleware(server, {
-      context: async ({ req }) => ({ token: req.headers.token }),
-    }) as unknown as express.RequestHandler);
+      context: async ({ req }: { req: Request }): Promise<ContextType> => ({ 
+        token: req.headers.token as string | undefined 
+      }),
+    }));
 
-    // Serve static assets in both production and development
-    app.use(express.static(path.join(__dirname, '../../client/dist')));
-    
-    // Handle React routing, return the index.html for all page requests
-    app.get('*', (_req, res) => {
-      res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
-    });
-
-    // Set up MongoDB connection
+    // Connect to MongoDB first
     console.log('Connecting to MongoDB...');
-    const db = mongoose.connection;
-    
-    // Handle connection errors
-    db.on('error', (err) => {
-      console.error('MongoDB connection error:', err);
-      process.exit(1); // Exit with failure
-    });
-
-    // Start server only after database connection is established
-    db.once('open', () => {
+    try {
+      const MONGODB_URI = process.env.MONGODB_URI;
+      
+      if (!MONGODB_URI) {
+        throw new Error('MONGODB_URI environment variable is not set');
+      }
+      
+      await mongoose.connect(MONGODB_URI);
+      
       console.log('MongoDB connected successfully');
+      
+      // Log the directory structure to debug path issues
+      console.log('Current directory:', __dirname);
+      console.log('Static files path:', path.join(__dirname, '../../client/dist'));
+      
+      // First check if the client/dist directory exists
+      try {
+        const staticPath = path.join(__dirname, '../../client/dist');
+        console.log('Attempting to serve static files from:', staticPath);
+        
+        // Serve static assets with explicit Cache-Control headers
+        app.use(express.static(staticPath, {
+          maxAge: '1h',
+          setHeaders: (res, filePath) => {
+            // Set appropriate cache headers
+            if (filePath.endsWith('.html')) {
+              // Don't cache HTML files
+              res.setHeader('Cache-Control', 'no-cache');
+            } else if (filePath.match(/\.(js|css|png|jpg|jpeg|gif|ico)$/)) {
+              // Cache JS/CSS/image files
+              res.setHeader('Cache-Control', 'public, max-age=3600');
+            }
+          }
+        }));
+        
+        // Handle React routing with explicit content type
+        app.get('*', (_req, res) => {
+          res.setHeader('Content-Type', 'text/html');
+          res.sendFile(path.join(staticPath, 'index.html'));
+        });
+      } catch (err) {
+        console.error('Error serving static files:', err);
+      }
       
       // Start Express server
       app.listen(PORT, () => {
@@ -60,12 +92,10 @@ const startApolloServer = async () => {
         console.log(`📊 Use GraphQL at http://localhost:${PORT}/graphql`);
         console.log(`🖥️ React app available at http://localhost:${PORT}`);
       });
-    });
-
-    // Attempt to connect to MongoDB
-    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/googlebooks', {
-      serverSelectionTimeoutMS: 5000 // 5 second timeout
-    });
+    } catch (dbError) {
+      console.error('MongoDB connection error:', dbError);
+      throw dbError;
+    }
   } catch (error) {
     console.error('Failed to start server:', error);
     process.exit(1);
