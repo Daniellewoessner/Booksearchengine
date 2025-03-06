@@ -21,18 +21,6 @@ const startApolloServer = async () => {
     await server.start();
     console.log('Apollo Server started successfully');
 
-    // Connect to MongoDB with timeout and error handling
-    try {
-      console.log('Connecting to MongoDB...');
-      await mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/googlebooks', {
-        serverSelectionTimeoutMS: 5000 // 5 second timeout
-      });
-      console.log('MongoDB connected successfully');
-    } catch (dbError) {
-      console.error('MongoDB connection error:', dbError);
-      console.log('Continuing without database connection');
-    }
-
     const PORT = process.env.PORT || 3001;
     const app = express();
 
@@ -52,14 +40,35 @@ const startApolloServer = async () => {
       res.sendFile(path.join(__dirname, '../../client/dist/index.html'));
     });
 
-    // Start Express server
-    app.listen(PORT, () => {
-      console.log(`🌍 API server running on port ${PORT}!`);
-      console.log(`📊 Use GraphQL at http://localhost:${PORT}/graphql`);
-      console.log(`🖥️ React app available at http://localhost:${PORT}`);
+    // Set up MongoDB connection
+    console.log('Connecting to MongoDB...');
+    const db = mongoose.connection;
+    
+    // Handle connection errors
+    db.on('error', (err) => {
+      console.error('MongoDB connection error:', err);
+      process.exit(1); // Exit with failure
+    });
+
+    // Start server only after database connection is established
+    db.once('open', () => {
+      console.log('MongoDB connected successfully');
+      
+      // Start Express server
+      app.listen(PORT, () => {
+        console.log(`🌍 API server running on port ${PORT}!`);
+        console.log(`📊 Use GraphQL at http://localhost:${PORT}/graphql`);
+        console.log(`🖥️ React app available at http://localhost:${PORT}`);
+      });
+    });
+
+    // Attempt to connect to MongoDB
+    await mongoose.connect(process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/googlebooks', {
+      serverSelectionTimeoutMS: 5000 // 5 second timeout
     });
   } catch (error) {
     console.error('Failed to start server:', error);
+    process.exit(1);
   }
 };
 
