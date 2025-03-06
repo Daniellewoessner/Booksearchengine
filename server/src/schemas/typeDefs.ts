@@ -32,12 +32,12 @@ input BookInput {
   
 type Query {
   me: User
-  books: [Book]  # Add this line to match your resolver
-  user(username: String): User  # Add this line to match your resolver
+  books: [Book]
+  user(username: String): User
 }
     
 type Mutation {
-  login(email: String!, password: String!): Auth
+  login(email: String, username: String, password: String!): Auth
   addUser(username: String!, email: String!, password: String!): Auth
   saveBook(bookData: BookInput!): User
   removeBook(bookId: ID!): User
