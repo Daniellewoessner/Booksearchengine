@@ -1,4 +1,4 @@
-#Book Search Engine 
+## Book Search Engine 
 
   ## Description
   This book search engine leverages the power of Apollo Server and GraphQL to provide a distinct and efficient data handling experience, a departure from traditional API routes. Instead of relying on REST endpoints, GraphQL allows clients to request specific data, minimizing over-fetching and optimizing network performance. The heart of the application connects to a MongoDB database, serving as the persistent storage for the extensive collection of Google Books. To ensure user data security and authentication, JSON Web Tokens (JWTs) are implemented, safeguarding sensitive information and controlling access to protected resources. This combination of technologies creates a robust, performant, and secure foundation for the book search engine.
